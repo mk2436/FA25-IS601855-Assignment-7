@@ -1,7 +1,7 @@
 name: Build and Push Docker Image
 
 on:
-  worflow_run:
+  workflow_run:
     workflows: ["Pytest Test Suite"]
     types:
       - completed
