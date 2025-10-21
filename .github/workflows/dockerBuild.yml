@@ -1,14 +1,15 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  worflow_run:
+    workflows: ["Pytest Test Suite"]
+    types:
+      - completed
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} # Only run if tests passed
 
     steps:
       - name: Checkout repository
